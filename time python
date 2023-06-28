@@ -1,0 +1,17 @@
+import requests
+
+def check_time(place):
+    url = f"http://worldtimeapi.org/api/timezone/{place}"
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        time_zone = data['timezone']
+        time = data['datetime'][11:16]
+        print(f"The current time in {time_zone} is: {time}")
+    else:
+        print("Unable to retrieve time data")
+
+# Example usage
+place = input("Enter the location (e.g., Europe/Warsaw): ")
+check_time(place)
